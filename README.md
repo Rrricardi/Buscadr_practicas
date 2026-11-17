@@ -1,3 +1,3 @@
 # Buscadr_practicas
 
-https://github.com/Rrricardi/Buscadr_practicas/deployments/github-pages
+https://rrricardi.github.io/Buscadr_practicas/
