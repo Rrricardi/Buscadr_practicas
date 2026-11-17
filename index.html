@@ -1,0 +1,1147 @@
+<!DOCTYPE html>
+<html lang="es" class="scroll-smooth">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Prácticas Colombia - Tu Centro de Empleabilidad y Prácticas Profesionales</title>
+    <!-- Tailwind CSS -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <!-- FontAwesome for icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <!-- Google Fonts Inter -->
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        primary: {
+                            50: '#eef2ff',
+                            100: '#e0e7ff',
+                            500: '#4f46e5',
+                            600: '#4338ca',
+                            700: '#3730a3',
+                            850: '#1e1b4b',
+                            900: '#0f172a'
+                        },
+                        corporate: {
+                            blue: '#0F2C59',
+                            light: '#F8FAFC',
+                            accent: '#2563EB'
+                        }
+                    },
+                    fontFamily: {
+                        sans: ['Inter', 'sans-serif'],
+                    }
+                }
+            }
+        }
+    </script>
+</head>
+<body class="bg-corporate-light text-slate-800 font-sans antialiased min-h-screen flex flex-col selection:bg-indigo-500 selection:text-white">
+
+    <!-- Notification Toast System -->
+    <div id="toast-container" class="fixed bottom-5 right-5 z-50 flex flex-col gap-3 pointer-events-none"></div>
+
+    <!-- Header & Navigation -->
+    <header class="sticky top-0 z-40 bg-white/95 backdrop-blur-md border-b border-slate-200 shadow-sm">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 h-20 flex items-center justify-between">
+            <div class="flex items-center gap-3">
+                <div class="w-11 h-11 rounded-xl bg-gradient-to-tr from-corporate-blue to-indigo-600 flex items-center justify-center text-white shadow-md shadow-indigo-500/20">
+                    <i class="fa-solid fa-graduation-cap text-xl"></i>
+                </div>
+                <div>
+                    <span class="text-xl font-extrabold tracking-tight text-slate-900">Prácticas<span class="text-indigo-600">Colombia</span></span>
+                    <span class="block text-xs font-medium text-slate-500">Conectando Talento & Futuro</span>
+                </div>
+            </div>
+
+            <!-- Desktop Nav -->
+            <nav class="hidden md:flex items-center gap-8 font-medium text-sm text-slate-600">
+                <a href="#buscador" class="hover:text-indigo-600 transition-colors">Buscador Activo</a>
+                <a href="#directorio" class="hover:text-indigo-600 transition-colors">Empresas & Portales</a>
+                <a href="#guias" class="hover:text-indigo-600 transition-colors">Guías de Empleo</a>
+                <a href="#tracker" class="hover:text-indigo-600 transition-colors flex items-center gap-1.5">
+                    Mi Tracker 
+                    <span id="badge-count" class="bg-indigo-100 text-indigo-700 text-xs px-2 py-0.5 rounded-full font-bold">0</span>
+                </a>
+            </nav>
+
+            <div class="hidden md:flex items-center gap-4">
+                <a href="#tracker" class="bg-corporate-blue hover:bg-indigo-900 text-white px-5 py-2.5 rounded-xl font-semibold text-sm shadow-md transition-all transform hover:-translate-y-0.5">
+                    <i class="fa-solid fa-plus-circle mr-2"></i>Registrar Postulación
+                </a>
+            </div>
+
+            <!-- Mobile Menu Button -->
+            <button id="mobile-menu-btn" class="md:hidden text-slate-700 hover:text-indigo-600 text-2xl p-2 focus:outline-none">
+                <i class="fa-solid fa-bars"></i>
+            </button>
+        </div>
+
+        <!-- Mobile Menu -->
+        <div id="mobile-menu" class="hidden md:hidden bg-white border-b border-slate-200 px-6 py-4 space-y-3 font-medium text-slate-700">
+            <a href="#buscador" class="block py-2 hover:text-indigo-600">Buscador Activo</a>
+            <a href="#directorio" class="block py-2 hover:text-indigo-600">Empresas & Portales</a>
+            <a href="#guias" class="block py-2 hover:text-indigo-600">Guías de Empleo</a>
+            <a href="#tracker" class="block py-2 hover:text-indigo-600">Mi Tracker de Postulaciones</a>
+            <div class="pt-2">
+                <a href="#tracker" class="w-full text-center block bg-corporate-blue text-white py-2.5 rounded-xl font-semibold shadow">Registrar Postulación</a>
+            </div>
+        </div>
+    </header>
+
+    <!-- Hero Section -->
+    <section class="relative bg-gradient-to-b from-corporate-blue via-indigo-900 to-slate-900 text-white py-20 lg:py-28 overflow-hidden">
+        <div class="absolute inset-0 opacity-10 bg-[radial-gradient(#ffffff_1px,transparent_1px)] [background-size:16px_16px]"></div>
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10 text-center max-w-4xl">
+            <span class="inline-flex items-center gap-2 bg-white/10 backdrop-blur-md px-4 py-1.5 rounded-full text-indigo-200 text-xs font-semibold uppercase tracking-wider mb-6 border border-white/10">
+                <i class="fa-solid fa-circle-check text-emerald-400"></i> Convocatorias Abiertas 2026 / 2027
+            </span>
+            <h1 class="text-4xl sm:text-5xl lg:text-6xl font-extrabold tracking-tight mb-6 leading-tight">
+                Encuentra tu Práctica Profesional o Contrato de Aprendizaje en <span class="text-transparent bg-clip-text bg-gradient-to-r from-blue-400 to-indigo-300">Colombia</span>
+            </h1>
+            <p class="text-lg sm:text-xl text-slate-300 mb-10 font-normal leading-relaxed">
+                Reunimos las mejores oportunidades en Medellín, Bogotá, Cali, Barranquilla y modalidad remota. Explora vacantes directas de grandes empresas, portales oficiales del SENA y plataformas de empleo líderes.
+            </p>
+            <div class="flex flex-col sm:flex-row justify-center gap-4">
+                <a href="#buscador" class="bg-white text-corporate-blue hover:bg-slate-100 font-bold px-8 py-4 rounded-xl shadow-xl transition-all transform hover:-translate-y-0.5 text-base flex items-center justify-center gap-2">
+                    <i class="fa-solid fa-magnifying-glass"></i> Buscar Ofertas Activas
+                </a>
+                <a href="#directorio" class="bg-indigo-600/30 hover:bg-indigo-600/50 border border-indigo-400/30 text-white font-bold px-8 py-4 rounded-xl backdrop-blur-md transition-all text-base flex items-center justify-center gap-2">
+                    <i class="fa-solid fa-building"></i> Ver Directorio de Empresas
+                </a>
+            </div>
+
+            <!-- Quick stats bar -->
+            <div class="mt-16 grid grid-cols-2 md:grid-cols-4 gap-6 pt-10 border-t border-white/10 text-center">
+                <div>
+                    <div class="text-3xl font-extrabold text-white">45+</div>
+                    <div class="text-xs text-slate-400 mt-1 uppercase tracking-wider">Empresas Aliadas</div>
+                </div>
+                <div>
+                    <div class="text-3xl font-extrabold text-white">5 Principal</div>
+                    <div class="text-xs text-slate-400 mt-1 uppercase tracking-wider">Ciudades y Remoto</div>
+                </div>
+                <div>
+                    <div class="text-3xl font-extrabold text-white">SENA & SENA</div>
+                    <div class="text-xs text-slate-400 mt-1 uppercase tracking-wider">Contratos Aprendizaje</div>
+                </div>
+                <div>
+                    <div class="text-3xl font-extrabold text-white">100%</div>
+                    <div class="text-xs text-slate-400 mt-1 uppercase tracking-wider">Gratuito y Verificado</div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Main Content Hub -->
+    <main class="flex-grow">
+
+        <!-- Section 1: Buscador y Filtros Interactivos -->
+        <section id="buscador" class="py-16 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="text-center max-w-3xl mx-auto mb-12">
+                <span class="text-indigo-600 font-semibold text-sm uppercase tracking-wider">Directorio de Ofertas en Vivo</span>
+                <h2 class="text-3xl font-bold text-slate-900 mt-2">Buscador y Filtros de Prácticas</h2>
+                <p class="text-slate-600 mt-2">Filtra entre pasantías universitarias, prácticas profesionales y contratos de aprendizaje por tu área de estudio y ciudad.</p>
+            </div>
+
+            <!-- Filter Controls Card -->
+            <div class="bg-white rounded-2xl shadow-xl p-6 md:p-8 border border-slate-100 mb-10">
+                <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+                    <!-- Search Input -->
+                    <div>
+                        <label class="block text-xs font-bold text-slate-700 uppercase tracking-wider mb-2">Palabra Clave o Empresa</label>
+                        <div class="relative">
+                            <span class="absolute inset-y-0 left-0 pl-3.5 flex items-center pointer-events-none text-slate-400">
+                                <i class="fa-solid fa-search"></i>
+                            </span>
+                            <input type="text" id="filter-keyword" placeholder="Ej. Desarrollador, Finanzas, Bancolombia..." class="w-full pl-10 pr-4 py-3 bg-slate-50 border border-slate-200 rounded-xl text-sm focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:bg-white transition-all">
+                        </div>
+                    </div>
+
+                    <!-- City Filter -->
+                    <div>
+                        <label class="block text-xs font-bold text-slate-700 uppercase tracking-wider mb-2">Ciudad / Modalidad</label>
+                        <select id="filter-city" class="w-full px-4 py-3 bg-slate-50 border border-slate-200 rounded-xl text-sm focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:bg-white transition-all">
+                            <option value="">Todas las ubicaciones</option>
+                            <option value="Medellín">Medellín</option>
+                            <option value="Bogotá">Bogotá D.C.</option>
+                            <option value="Cali">Cali</option>
+                            <option value="Barranquilla">Barranquilla</option>
+                            <option value="Remoto">Remoto (Colombia)</option>
+                        </select>
+                    </div>
+
+                    <!-- Area Filter -->
+                    <div>
+                        <label class="block text-xs font-bold text-slate-700 uppercase tracking-wider mb-2">Área de Estudio</label>
+                        <select id="filter-area" class="w-full px-4 py-3 bg-slate-50 border border-slate-200 rounded-xl text-sm focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:bg-white transition-all">
+                            <option value="">Todas las áreas</option>
+                            <option value="Ingeniería & Tecnología">Ingeniería & Tecnología</option>
+                            <option value="Ciencias Económicas">Ciencias Económicas & Admón</option>
+                            <option value="Ciencias de la Salud">Ciencias de la Salud</option>
+                            <option value="Derecho & Ciencias Sociales">Derecho & Ciencias Sociales</option>
+                            <option value="Diseño & Creatividad">Diseño & Creatividad</option>
+                        </select>
+                    </div>
+                </div>
+
+                <div class="mt-6 flex flex-wrap items-center justify-between gap-4 pt-4 border-t border-slate-100">
+                    <div class="flex items-center gap-2 text-sm text-slate-500">
+                        <span id="results-count" class="font-bold text-slate-800">0</span> ofertas encontradas
+                    </div>
+                    <div class="flex items-center gap-3">
+                        <button id="reset-filters" class="text-sm font-semibold text-slate-600 hover:text-indigo-600 px-4 py-2 rounded-lg transition-colors">
+                            <i class="fa-solid fa-rotate-right mr-1.5"></i> Restablecer filtros
+                        </button>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Results Grid -->
+            <div id="jobs-grid" class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+                <!-- Dynamic cards populated via JavaScript -->
+            </div>
+
+            <!-- Empty State for Search -->
+            <div id="no-results" class="hidden text-center py-16 bg-white rounded-2xl border border-dashed border-slate-300 mt-6">
+                <div class="w-16 h-16 bg-indigo-50 text-indigo-500 rounded-full flex items-center justify-center mx-auto mb-4 text-2xl">
+                    <i class="fa-solid fa-folder-open"></i>
+                </div>
+                <h3 class="text-lg font-bold text-slate-800">No se encontraron ofertas con estos filtros</h3>
+                <p class="text-slate-500 text-sm mt-1">Prueba cambiando la ciudad o el área de estudio seleccionada.</p>
+                <button onclick="resetAllFilters()" class="mt-4 bg-indigo-600 text-white px-5 py-2 rounded-xl text-sm font-semibold hover:bg-indigo-700 transition">Ver todas las ofertas</button>
+            </div>
+        </section>
+
+        <!-- Section 2: Directorio de Empresas y Sitios de Búsqueda -->
+        <section id="directorio" class="bg-white py-20 border-y border-slate-200">
+            <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+                <div class="text-center max-w-3xl mx-auto mb-16">
+                    <span class="text-indigo-600 font-semibold text-sm uppercase tracking-wider">Canales Oficiales & Empresas Líderes</span>
+                    <h2 class="text-3xl font-bold text-slate-900 mt-2">Directorio de Empleabilidad en Colombia</h2>
+                    <p class="text-slate-600 mt-2">Acceso directo a las páginas de carreras corporativas donde se publican vacantes de prácticas profesionales y contratos de aprendizaje SENA.</p>
+                </div>
+
+                <!-- Tabs Navigation for Directory -->
+                <div class="flex justify-center mb-10">
+                    <div class="inline-flex bg-slate-100 p-1.5 rounded-2xl gap-2">
+                        <button onclick="switchTab('empresas')" id="tab-btn-empresas" class="px-6 py-2.5 rounded-xl text-sm font-bold transition-all bg-white text-indigo-600 shadow-sm">
+                            <i class="fa-solid fa-building mr-2"></i> Grandes Empresas (Carreras)
+                        </button>
+                        <button onclick="switchTab('portales')" id="tab-btn-portales" class="px-6 py-2.5 rounded-xl text-sm font-bold text-slate-600 hover:text-indigo-600 transition-all">
+                            <i class="fa-solid fa-globe mr-2"></i> Portales de Empleo & SENA
+                        </button>
+                    </div>
+                </div>
+
+                <!-- Tab Content 1: Empresas -->
+                <div id="tab-empresas" class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+                    <!-- Bancolombia -->
+                    <div class="bg-slate-50 rounded-2xl p-6 border border-slate-200 hover:border-indigo-300 transition-all hover:shadow-lg flex flex-col justify-between">
+                        <div>
+                            <div class="flex items-center justify-between mb-4">
+                                <div class="w-12 h-12 bg-amber-100 text-amber-700 font-extrabold rounded-xl flex items-center justify-center text-lg shadow-inner">BC</div>
+                                <span class="bg-emerald-100 text-emerald-800 text-xs font-semibold px-2.5 py-1 rounded-full">Convocatorias Activas</span>
+                            </div>
+                            <h3 class="text-lg font-bold text-slate-900">Bancolombia (Prácticas)</h3>
+                            <p class="text-slate-600 text-sm mt-2">Uno de los empleadores más apetecidos por universitarios en áreas de tecnología, ingeniería, finanzas y administración.</p>
+                            <div class="mt-4 flex flex-wrap gap-1.5">
+                                <span class="text-xs bg-slate-200 text-slate-700 px-2.5 py-1 rounded-md">Medellín / Bogotá</span>
+                                <span class="text-xs bg-slate-200 text-slate-700 px-2.5 py-1 rounded-md">SENA / Universitarios</span>
+                            </div>
+                        </div>
+                        <div class="mt-6 pt-4 border-t border-slate-200">
+                            <a href="https://www.grupobancolombia.com/personas/conocenos/trabaja-con-nosotros" target="_blank" rel="noopener noreferrer" class="w-full flex items-center justify-center gap-2 bg-indigo-600 hover:bg-indigo-700 text-white py-2.5 rounded-xl font-semibold text-sm transition">
+                                Visitar Portal <i class="fa-solid fa-arrow-up-right-from-square text-xs"></i>
+                            </a>
+                        </div>
+                    </div>
+
+                    <!-- Ecopetrol -->
+                    <div class="bg-slate-50 rounded-2xl p-6 border border-slate-200 hover:border-indigo-300 transition-all hover:shadow-lg flex flex-col justify-between">
+                        <div>
+                            <div class="flex items-center justify-between mb-4">
+                                <div class="w-12 h-12 bg-emerald-100 text-emerald-700 font-extrabold rounded-xl flex items-center justify-center text-lg shadow-inner">EC</div>
+                                <span class="bg-emerald-100 text-emerald-800 text-xs font-semibold px-2.5 py-1 rounded-full">Programa Semestral</span>
+                            </div>
+                            <h3 class="text-lg font-bold text-slate-900">Ecopetrol Talento Joven</h3>
+                            <p class="text-slate-600 text-sm mt-2">Prácticas profesionales e industriales en ingeniería de petróleos, química, sistemas, geología y áreas administrativas.</p>
+                            <div class="mt-4 flex flex-wrap gap-1.5">
+                                <span class="text-xs bg-slate-200 text-slate-700 px-2.5 py-1 rounded-md">Bogotá / Barrancabermeja</span>
+                                <span class="text-xs bg-slate-200 text-slate-700 px-2.5 py-1 rounded-md">Ingenierías</span>
+                            </div>
+                        </div>
+                        <div class="mt-6 pt-4 border-t border-slate-200">
+                            <a href="https://www.ecopetrol.com.co/wps/portal/es/ecopetrol-web/empleo/jovenes-talento" target="_blank" rel="noopener noreferrer" class="w-full flex items-center justify-center gap-2 bg-indigo-600 hover:bg-indigo-700 text-white py-2.5 rounded-xl font-semibold text-sm transition">
+                                Visitar Portal <i class="fa-solid fa-arrow-up-right-from-square text-xs"></i>
+                            </a>
+                        </div>
+                    </div>
+
+                    <!-- Grupo Sura -->
+                    <div class="bg-slate-50 rounded-2xl p-6 border border-slate-200 hover:border-indigo-300 transition-all hover:shadow-lg flex flex-col justify-between">
+                        <div>
+                            <div class="flex items-center justify-between mb-4">
+                                <div class="w-12 h-12 bg-blue-100 text-blue-700 font-extrabold rounded-xl flex items-center justify-center text-lg shadow-inner">GS</div>
+                                <span class="bg-blue-100 text-blue-800 text-xs font-semibold px-2.5 py-1 rounded-full">Todo el año</span>
+                            </div>
+                            <h3 class="text-lg font-bold text-slate-900">Grupo Sura</h3>
+                            <p class="text-slate-600 text-sm mt-2">Oportunidades para pasantes en gestión de riesgos, actuariado, analítica de datos, derecho y administración.</p>
+                            <div class="mt-4 flex flex-wrap gap-1.5">
+                                <span class="text-xs bg-slate-200 text-slate-700 px-2.5 py-1 rounded-md">Medellín / Nacional</span>
+                                <span class="text-xs bg-slate-200 text-slate-700 px-2.5 py-1 rounded-md">Finanzas & Seguros</span>
+                            </div>
+                        </div>
+                        <div class="mt-6 pt-4 border-t border-slate-200">
+                            <a href="https://www.gruposura.com/talento-humano/" target="_blank" rel="noopener noreferrer" class="w-full flex items-center justify-center gap-2 bg-indigo-600 hover:bg-indigo-700 text-white py-2.5 rounded-xl font-semibold text-sm transition">
+                                Visitar Portal <i class="fa-solid fa-arrow-up-right-from-square text-xs"></i>
+                            </a>
+                        </div>
+                    </div>
+
+                    <!-- Nutresa -->
+                    <div class="bg-slate-50 rounded-2xl p-6 border border-slate-200 hover:border-indigo-300 transition-all hover:shadow-lg flex flex-col justify-between">
+                        <div>
+                            <div class="flex items-center justify-between mb-4">
+                                <div class="w-12 h-12 bg-red-100 text-red-700 font-extrabold rounded-xl flex items-center justify-center text-lg shadow-inner">GN</div>
+                                <span class="bg-emerald-100 text-emerald-800 text-xs font-semibold px-2.5 py-1 rounded-full">Abierto</span>
+                            </div>
+                            <h3 class="text-lg font-bold text-slate-900">Grupo Nutresa</h3>
+                            <p class="text-slate-600 text-sm mt-2">Prácticas en plantas de producción, cadena de suministro, marketing, innovación de alimentos y gestión humana.</p>
+                            <div class="mt-4 flex flex-wrap gap-1.5">
+                                <span class="text-xs bg-slate-200 text-slate-700 px-2.5 py-1 rounded-md">Medellín / Bogotá / Cali</span>
+                                <span class="text-xs bg-slate-200 text-slate-700 px-2.5 py-1 rounded-md">Alimentos / Industrial</span>
+                            </div>
+                        </div>
+                        <div class="mt-6 pt-4 border-t border-slate-200">
+                            <a href="https://www.gruponutresa.com/trabaje-con-nosotros/" target="_blank" rel="noopener noreferrer" class="w-full flex items-center justify-center gap-2 bg-indigo-600 hover:bg-indigo-700 text-white py-2.5 rounded-xl font-semibold text-sm transition">
+                                Visitar Portal <i class="fa-solid fa-arrow-up-right-from-square text-xs"></i>
+                            </a>
+                        </div>
+                    </div>
+
+                    <!-- Mercado Libre -->
+                    <div class="bg-slate-50 rounded-2xl p-6 border border-slate-200 hover:border-indigo-300 transition-all hover:shadow-lg flex flex-col justify-between">
+                        <div>
+                            <div class="flex items-center justify-between mb-4">
+                                <div class="w-12 h-12 bg-amber-100 text-yellow-700 font-extrabold rounded-xl flex items-center justify-center text-lg shadow-inner">ML</div>
+                                <span class="bg-emerald-100 text-emerald-800 text-xs font-semibold px-2.5 py-1 rounded-full">Alta Demanda</span>
+                            </div>
+                            <h3 class="text-lg font-bold text-slate-900">Mercado Libre IT & Business</h3>
+                            <p class="text-slate-600 text-sm mt-2">Programas de pasantías IT (Software Engineer, Data Science) y negocios en el gigante del comercio electrónico.</p>
+                            <div class="mt-4 flex flex-wrap gap-1.5">
+                                <span class="text-xs bg-slate-200 text-slate-700 px-2.5 py-1 rounded-md">Bogotá / Remoto</span>
+                                <span class="text-xs bg-slate-200 text-slate-700 px-2.5 py-1 rounded-md">Tecnología</span>
+                            </div>
+                        </div>
+                        <div class="mt-6 pt-4 border-t border-slate-200">
+                            <a href="https://jobs.mercadolibre.com/" target="_blank" rel="noopener noreferrer" class="w-full flex items-center justify-center gap-2 bg-indigo-600 hover:bg-indigo-700 text-white py-2.5 rounded-xl font-semibold text-sm transition">
+                                Visitar Portal <i class="fa-solid fa-arrow-up-right-from-square text-xs"></i>
+                            </a>
+                        </div>
+                    </div>
+
+                    <!-- Globant -->
+                    <div class="bg-slate-50 rounded-2xl p-6 border border-slate-200 hover:border-indigo-300 transition-all hover:shadow-lg flex flex-col justify-between">
+                        <div>
+                            <div class="flex items-center justify-between mb-4">
+                                <div class="w-12 h-12 bg-indigo-100 text-indigo-700 font-extrabold rounded-xl flex items-center justify-center text-lg shadow-inner">GL</div>
+                                <span class="bg-purple-100 text-purple-800 text-xs font-semibold px-2.5 py-1 rounded-full">Bootcamps & Prácticas</span>
+                            </div>
+                            <h3 class="text-lg font-bold text-slate-900">Globant Bootcamp & Pasantías</h3>
+                            <p class="text-slate-600 text-sm mt-2">Iniciativas de entrenamiento técnico intensivo con pasantía asegurada en desarrollo de software y QA.</p>
+                            <div class="mt-4 flex flex-wrap gap-1.5">
+                                <span class="text-xs bg-slate-200 text-slate-700 px-2.5 py-1 rounded-md">Medellín / Bogotá / Cali</span>
+                                <span class="text-xs bg-slate-200 text-slate-700 px-2.5 py-1 rounded-md">Tech / Coding</span>
+                            </div>
+                        </div>
+                        <div class="mt-6 pt-4 border-t border-slate-200">
+                            <a href="https://careers.globant.com/" target="_blank" rel="noopener noreferrer" class="w-full flex items-center justify-center gap-2 bg-indigo-600 hover:bg-indigo-700 text-white py-2.5 rounded-xl font-semibold text-sm transition">
+                                Visitar Portal <i class="fa-solid fa-arrow-up-right-from-square text-xs"></i>
+                            </a>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Tab Content 2: Portales de Empleo & SENA (Hidden by default) -->
+                <div id="tab-portales" class="hidden grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+                    <!-- Agencia Pública de Empleo SENA -->
+                    <div class="bg-slate-50 rounded-2xl p-6 border border-slate-200 hover:border-indigo-300 transition-all hover:shadow-lg flex flex-col justify-between">
+                        <div>
+                            <div class="flex items-center justify-between mb-4">
+                                <div class="w-12 h-12 bg-red-100 text-red-600 font-extrabold rounded-xl flex items-center justify-center text-lg shadow-inner">SENA</div>
+                                <span class="bg-red-100 text-red-800 text-xs font-semibold px-2.5 py-1 rounded-full">Oficial Contrato Aprendizaje</span>
+                            </div>
+                            <h3 class="text-lg font-bold text-slate-900">Agencia Pública de Empleo SENA</h3>
+                            <p class="text-slate-600 text-sm mt-2">La plataforma obligatoria para publicar y buscar contratos de aprendizaje regulados por ley en Colombia.</p>
+                            <div class="mt-4 flex flex-wrap gap-1.5">
+                                <span class="text-xs bg-slate-200 text-slate-700 px-2.5 py-1 rounded-md">Todo Colombia</span>
+                                <span class="text-xs bg-slate-200 text-slate-700 px-2.5 py-1 rounded-md">SENA / Técnico / Tecnólogo</span>
+                            </div>
+                        </div>
+                        <div class="mt-6 pt-4 border-t border-slate-200">
+                            <a href="https://agenciapublicadeempleo.sena.edu.co/" target="_blank" rel="noopener noreferrer" class="w-full flex items-center justify-center gap-2 bg-indigo-600 hover:bg-indigo-700 text-white py-2.5 rounded-xl font-semibold text-sm transition">
+                                Ir al SENA <i class="fa-solid fa-arrow-up-right-from-square text-xs"></i>
+                            </a>
+                        </div>
+                    </div>
+
+                    <!-- LinkedIn -->
+                    <div class="bg-slate-50 rounded-2xl p-6 border border-slate-200 hover:border-indigo-300 transition-all hover:shadow-lg flex flex-col justify-between">
+                        <div>
+                            <div class="flex items-center justify-between mb-4">
+                                <div class="w-12 h-12 bg-sky-100 text-sky-700 font-extrabold rounded-xl flex items-center justify-center text-lg shadow-inner">IN</div>
+                                <span class="bg-sky-100 text-sky-800 text-xs font-semibold px-2.5 py-1 rounded-full">Filtro 'Prácticas'</span>
+                            </div>
+                            <h3 class="text-lg font-bold text-slate-900">LinkedIn Empleos Colombia</h3>
+                            <p class="text-slate-600 text-sm mt-2">Usa filtros avanzados buscando "Practicante" o "Intern" en ciudades colombianas para conectar con reclutadores.</p>
+                            <div class="mt-4 flex flex-wrap gap-1.5">
+                                <span class="text-xs bg-slate-200 text-slate-700 px-2.5 py-1 rounded-md">Networking</span>
+                                <span class="text-xs bg-slate-200 text-slate-700 px-2.5 py-1 rounded-md">Multinacionales</span>
+                            </div>
+                        </div>
+                        <div class="mt-6 pt-4 border-t border-slate-200">
+                            <a href="https://www.linkedin.com/jobs/search/?location=Colombia&geoId=102901358&keywords=practicante" target="_blank" rel="noopener noreferrer" class="w-full flex items-center justify-center gap-2 bg-indigo-600 hover:bg-indigo-700 text-white py-2.5 rounded-xl font-semibold text-sm transition">
+                                Buscar en LinkedIn <i class="fa-solid fa-arrow-up-right-from-square text-xs"></i>
+                            </a>
+                        </div>
+                    </div>
+
+                    <!-- ElEmpleo.com -->
+                    <div class="bg-slate-50 rounded-2xl p-6 border border-slate-200 hover:border-indigo-300 transition-all hover:shadow-lg flex flex-col justify-between">
+                        <div>
+                            <div class="flex items-center justify-between mb-4">
+                                <div class="w-12 h-12 bg-teal-100 text-teal-700 font-extrabold rounded-xl flex items-center justify-center text-lg shadow-inner">EE</div>
+                                <span class="bg-teal-100 text-teal-800 text-xs font-semibold px-2.5 py-1 rounded-full">Tradicional</span>
+                            </div>
+                            <h3 class="text-lg font-bold text-slate-900">ElEmpleo.com (Casa Editorial El Tiempo)</h3>
+                            <p class="text-slate-600 text-sm mt-2">Portal histórico en Colombia con miles de ofertas de pasantías y empleos juniors corporativos diarios.</p>
+                            <div class="mt-4 flex flex-wrap gap-1.5">
+                                <span class="text-xs bg-slate-200 text-slate-700 px-2.5 py-1 rounded-md">Nacional</span>
+                                <span class="text-xs bg-slate-200 text-slate-700 px-2.5 py-1 rounded-md">Empresas Medianas y Grandes</span>
+                            </div>
+                        </div>
+                        <div class="mt-6 pt-4 border-t border-slate-200">
+                            <a href="https://www.elempleo.com/co" target="_blank" rel="noopener noreferrer" class="w-full flex items-center justify-center gap-2 bg-indigo-600 hover:bg-indigo-700 text-white py-2.5 rounded-xl font-semibold text-sm transition">
+                                Visitar ElEmpleo <i class="fa-solid fa-arrow-up-right-from-square text-xs"></i>
+                            </a>
+                        </div>
+                    </div>
+
+                    <!-- Computrabajo -->
+                    <div class="bg-slate-50 rounded-2xl p-6 border border-slate-200 hover:border-indigo-300 transition-all hover:shadow-lg flex flex-col justify-between">
+                        <div>
+                            <div class="flex items-center justify-between mb-4">
+                                <div class="w-12 h-12 bg-orange-100 text-orange-600 font-extrabold rounded-xl flex items-center justify-center text-lg shadow-inner">CT</div>
+                                <span class="bg-orange-100 text-orange-800 text-xs font-semibold px-2.5 py-1 rounded-full">Alto Volumen</span>
+                            </div>
+                            <h3 class="text-lg font-bold text-slate-900">Computrabajo Colombia</h3>
+                            <p class="text-slate-600 text-sm mt-2">Buscador rápido de vacantes de prácticas para estudiantes en todas las regiones del país.</p>
+                            <div class="mt-4 flex flex-wrap gap-1.5">
+                                <span class="text-xs bg-slate-200 text-slate-700 px-2.5 py-1 rounded-md">Todas las ciudades</span>
+                            </div>
+                        </div>
+                        <div class="mt-6 pt-4 border-t border-slate-200">
+                            <a href="https://co.computrabajo.com/" target="_blank" rel="noopener noreferrer" class="w-full flex items-center justify-center gap-2 bg-indigo-600 hover:bg-indigo-700 text-white py-2.5 rounded-xl font-semibold text-sm transition">
+                                Visitar Computrabajo <i class="fa-solid fa-arrow-up-right-from-square text-xs"></i>
+                            </a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Section 3: Consejos Clave para el Proceso de Selección -->
+        <section id="guias" class="py-20 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="text-center max-w-3xl mx-auto mb-16">
+                <span class="text-indigo-600 font-semibold text-sm uppercase tracking-wider">Aprende con Expertos</span>
+                <h2 class="text-3xl font-bold text-slate-900 mt-2">Guías para Triunfar en tu Proceso de Selección</h2>
+                <p class="text-slate-600 mt-2">Consejos prácticos adaptados al mercado laboral colombiano para destacar desde tu hoja de vida hasta la entrevista final.</p>
+            </div>
+
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+                <!-- Guide Card 1 -->
+                <div class="bg-white rounded-2xl p-8 border border-slate-200 shadow-sm hover:shadow-xl transition-all flex flex-col justify-between">
+                    <div>
+                        <div class="w-14 h-14 bg-indigo-50 text-indigo-600 rounded-2xl flex items-center justify-center text-2xl mb-6 shadow-inner">
+                            <i class="fa-solid fa-file-lines"></i>
+                        </div>
+                        <h3 class="text-xl font-bold text-slate-900 mb-3">1. Hoja de Vida de Alto Impacto</h3>
+                        <p class="text-slate-600 text-sm leading-relaxed">
+                            Para estudiantes sin experiencia formal previa, resalta tus proyectos universitarios, semilleros de investigación, voluntariados, habilidades en software y nivel de inglés. Máximo 1 página.
+                        </p>
+                        <ul class="mt-4 space-y-2 text-xs text-slate-600 font-medium">
+                            <li class="flex items-center gap-2"><i class="fa-solid fa-check text-emerald-500"></i> Formato limpio (ATS-friendly)</li>
+                            <li class="flex items-center gap-2"><i class="fa-solid fa-check text-emerald-500"></i> Enlace a tu perfil de LinkedIn</li>
+                            <li class="flex items-center gap-2"><i class="fa-solid fa-check text-emerald-500"></i> Ortografía impecable</li>
+                        </ul>
+                    </div>
+                    <div class="mt-8 pt-4 border-t border-slate-100">
+                        <button onclick="openTipModal('hojaDeVida')" class="text-indigo-600 hover:text-indigo-800 font-semibold text-sm flex items-center gap-1.5">
+                            Ver plantilla recomendada <i class="fa-solid fa-arrow-right text-xs"></i>
+                        </button>
+                    </div>
+                </div>
+
+                <!-- Guide Card 2 -->
+                <div class="bg-white rounded-2xl p-8 border border-slate-200 shadow-sm hover:shadow-xl transition-all flex flex-col justify-between">
+                    <div>
+                        <div class="w-14 h-14 bg-emerald-50 text-emerald-600 rounded-2xl flex items-center justify-center text-2xl mb-6 shadow-inner">
+                            <i class="fa-solid fa-brain"></i>
+                        </div>
+                        <h3 class="text-xl font-bold text-slate-900 mb-3">2. Pruebas Psicotécnicas & Técnicas</h3>
+                        <p class="text-slate-600 text-sm leading-relaxed">
+                            Las grandes empresas en Colombia utilizan plataformas como SHL, Hogan o pruebas lógicas. Practica razonamiento numérico, verbal y abstracto antes de presentar exámenes.
+                        </p>
+                        <ul class="mt-4 space-y-2 text-xs text-slate-600 font-medium">
+                            <li class="flex items-center gap-2"><i class="fa-solid fa-check text-emerald-500"></i> Descansa bien el día previo</li>
+                            <li class="flex items-center gap-2"><i class="fa-solid fa-check text-emerald-500"></i> Realiza tests de práctica online</li>
+                            <li class="flex items-center gap-2"><i class="fa-solid fa-check text-emerald-500"></i> Lee con atención los enunciados</li>
+                        </ul>
+                    </div>
+                    <div class="mt-8 pt-4 border-t border-slate-100">
+                        <button onclick="openTipModal('psicotecnicas')" class="text-indigo-600 hover:text-indigo-800 font-semibold text-sm flex items-center gap-1.5">
+                            Consejos para exámenes <i class="fa-solid fa-arrow-right text-xs"></i>
+                        </button>
+                    </div>
+                </div>
+
+                <!-- Guide Card 3 -->
+                <div class="bg-white rounded-2xl p-8 border border-slate-200 shadow-sm hover:shadow-xl transition-all flex flex-col justify-between">
+                    <div>
+                        <div class="w-14 h-14 bg-amber-50 text-amber-600 rounded-2xl flex items-center justify-center text-2xl mb-6 shadow-inner">
+                            <i class="fa-solid fa-comments"></i>
+                        </div>
+                        <h3 class="text-xl font-bold text-slate-900 mb-3">3. Entrevistas por Competencias (STAR)</h3>
+                        <p class="text-slate-600 text-sm leading-relaxed">
+                            Prepárate para responder usando el método STAR (Situación, Tarea, Acción, Resultado). Muestra tu capacidad de trabajo en equipo, liderazgo y resolución de problemas.
+                        </p>
+                        <ul class="mt-4 space-y-2 text-xs text-slate-600 font-medium">
+                            <li class="flex items-center gap-2"><i class="fa-solid fa-check text-emerald-500"></i> Investiga sobre la empresa</li>
+                            <li class="flex items-center gap-2"><i class="fa-solid fa-check text-emerald-500"></i> Prepara ejemplos reales</li>
+                            <li class="flex items-center gap-2"><i class="fa-solid fa-check text-emerald-500"></i> Cuida tu lenguaje corporal</li>
+                        </ul>
+                    </div>
+                    <div class="mt-8 pt-4 border-t border-slate-100">
+                        <button onclick="openTipModal('entrevistas')" class="text-indigo-600 hover:text-indigo-800 font-semibold text-sm flex items-center gap-1.5">
+                            Método STAR explicado <i class="fa-solid fa-arrow-right text-xs"></i>
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Section 4: Mi Tracker Interactivo de Postulaciones -->
+        <section id="tracker" class="py-20 bg-gradient-to-tr from-slate-900 via-indigo-950 to-corporate-blue text-white">
+            <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+                <div class="flex flex-col md:flex-row md:items-end justify-between mb-12 gap-6">
+                    <div>
+                        <span class="text-indigo-400 font-semibold text-sm uppercase tracking-wider">Herramienta de Seguimiento</span>
+                        <h2 class="text-3xl font-bold text-white mt-2">Mi Tracker de Postulaciones</h2>
+                        <p class="text-slate-300 mt-1">Lleva el control de tus procesos de prácticas, entrevistas y recordatorios en un solo lugar.</p>
+                    </div>
+                    <button onclick="openApplicationModal()" class="bg-indigo-600 hover:bg-indigo-500 text-white px-6 py-3 rounded-xl font-semibold text-sm shadow-lg flex items-center gap-2 transition-all transform hover:-translate-y-0.5">
+                        <i class="fa-solid fa-plus"></i> Registrar Nueva Postulación
+                    </button>
+                </div>
+
+                <!-- Tracker Kanban / Table Container -->
+                <div class="bg-white/10 backdrop-blur-md rounded-2xl p-6 border border-white/15 overflow-x-auto shadow-2xl">
+                    <table class="w-full text-left text-sm text-slate-200 min-w-[700px]">
+                        <thead class="bg-white/10 uppercase text-xs font-bold text-indigo-200 tracking-wider">
+                            <tr>
+                                <th class="p-4 rounded-l-xl">Empresa / Puesto</th>
+                                <th class="p-4">Ciudad</th>
+                                <th class="p-4">Estado del Proceso</th>
+                                <th class="p-4">Fecha Postulación</th>
+                                <th class="p-4 rounded-r-xl text-right">Acciones</th>
+                            </tr>
+                        </thead>
+                        <tbody id="tracker-table-body" class="divide-y divide-white/10">
+                            <!-- Populated via JS -->
+                        </tbody>
+                    </table>
+                    <div id="tracker-empty" class="text-center py-12 text-slate-400">
+                        <i class="fa-solid fa-clipboard-list text-4xl mb-3 block text-slate-500"></i>
+                        <p class="text-base font-medium">Aún no tienes postulaciones registradas en tu tracker.</p>
+                        <p class="text-xs text-slate-400 mt-1">Haz clic en "Registrar Nueva Postulación" o guarda ofertas directamente desde el buscador.</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+    </main>
+
+    <!-- Footer -->
+    <footer class="bg-slate-900 text-slate-400 py-12 border-t border-slate-800">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 grid grid-cols-1 md:grid-cols-4 gap-8 mb-12">
+            <div class="space-y-4 md:col-span-1">
+                <div class="flex items-center gap-3">
+                    <div class="w-9 h-9 rounded-lg bg-indigo-600 flex items-center justify-center text-white">
+                        <i class="fa-solid fa-graduation-cap"></i>
+                    </div>
+                    <span class="text-lg font-bold text-white">Prácticas<span class="text-indigo-400">Colombia</span></span>
+                </div>
+                <p class="text-xs leading-relaxed text-slate-400">
+                    Plataforma independiente informativa para centralizar oportunidades de empleabilidad juvenil, pasantías y contratos de aprendizaje en Colombia.
+                </p>
+            </div>
+            <div>
+                <h4 class="text-white font-bold text-sm mb-4">Ciudades Principales</h4>
+                <ul class="space-y-2 text-xs">
+                    <li><a href="#buscador" onclick="filterByCityQuick('Medellín')" class="hover:text-white transition">Prácticas en Medellín</a></li>
+                    <li><a href="#buscador" onclick="filterByCityQuick('Bogotá')" class="hover:text-white transition">Prácticas en Bogotá</a></li>
+                    <li><a href="#buscador" onclick="filterByCityQuick('Cali')" class="hover:text-white transition">Prácticas en Cali</a></li>
+                    <li><a href="#buscador" onclick="filterByCityQuick('Barranquilla')" class="hover:text-white transition">Prácticas en Barranquilla</a></li>
+                </ul>
+            </div>
+            <div>
+                <h4 class="text-white font-bold text-sm mb-4">Áreas Destacadas</h4>
+                <ul class="space-y-2 text-xs">
+                    <li><a href="#buscador" class="hover:text-white transition">Ingeniería & Tecnología</a></li>
+                    <li><a href="#buscador" class="hover:text-white transition">Ciencias Económicas</a></li>
+                    <li><a href="#buscador" class="hover:text-white transition">Ciencias de la Salud</a></li>
+                    <li><a href="#buscador" class="hover:text-white transition">Derecho y Sociales</a></li>
+                </ul>
+            </div>
+            <div>
+                <h4 class="text-white font-bold text-sm mb-4">Aviso Legal</h4>
+                <p class="text-xs text-slate-400 leading-relaxed">
+                    Los enlaces dirigen a los portales oficiales de cada empresa o bolsa de empleo. Prácticas Colombia no solicita datos sensibles ni cobra por intermediación.
+                </p>
+            </div>
+        </div>
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 pt-8 border-t border-slate-800 text-center text-xs text-slate-500">
+            &copy; 2026 Prácticas Colombia. Todos los derechos reservados. Desarrollado con vocación para el talento joven.
+        </div>
+    </footer>
+
+    <!-- Modals -->
+
+    <!-- Application Modal (Add / Edit Tracker) -->
+    <div id="application-modal" class="fixed inset-0 z-50 bg-slate-900/60 backdrop-blur-sm hidden items-center justify-center p-4">
+        <div class="bg-white rounded-3xl max-w-lg w-full p-8 shadow-2xl relative animate-in fade-in zoom-in duration-200">
+            <button onclick="closeApplicationModal()" class="absolute top-6 right-6 text-slate-400 hover:text-slate-700 text-xl font-bold">
+                <i class="fa-solid fa-xmark"></i>
+            </button>
+            <h3 class="text-2xl font-bold text-slate-900 mb-2">Registrar Postulación</h3>
+            <p class="text-xs text-slate-500 mb-6">Añade una empresa y rol a tu tablero personal de seguimiento.</p>
+
+            <form id="application-form" onsubmit="handleApplicationSubmit(event)" class="space-y-4">
+                <div>
+                    <label class="block text-xs font-bold text-slate-700 uppercase tracking-wider mb-1.5">Nombre de la Empresa</label>
+                    <input type="text" id="modal-company" required placeholder="Ej. Bancolombia, Ecopetrol..." class="w-full px-4 py-3 bg-slate-50 border border-slate-200 rounded-xl text-sm focus:outline-none focus:ring-2 focus:ring-indigo-500">
+                </div>
+                <div>
+                    <label class="block text-xs font-bold text-slate-700 uppercase tracking-wider mb-1.5">Título del Rol o Práctica</label>
+                    <input type="text" id="modal-role" required placeholder="Ej. Practicante Ingeniería de Sistemas" class="w-full px-4 py-3 bg-slate-50 border border-slate-200 rounded-xl text-sm focus:outline-none focus:ring-2 focus:ring-indigo-500">
+                </div>
+                <div class="grid grid-cols-2 gap-4">
+                    <div>
+                        <label class="block text-xs font-bold text-slate-700 uppercase tracking-wider mb-1.5">Ciudad</label>
+                        <select id="modal-city" class="w-full px-4 py-3 bg-slate-50 border border-slate-200 rounded-xl text-sm focus:outline-none focus:ring-2 focus:ring-indigo-500">
+                            <option value="Medellín">Medellín</option>
+                            <option value="Bogotá">Bogotá D.C.</option>
+                            <option value="Cali">Cali</option>
+                            <option value="Barranquilla">Barranquilla</option>
+                            <option value="Remoto">Remoto</option>
+                        </select>
+                    </div>
+                    <div>
+                        <label class="block text-xs font-bold text-slate-700 uppercase tracking-wider mb-1.5">Estado Inicial</label>
+                        <select id="modal-status" class="w-full px-4 py-3 bg-slate-50 border border-slate-200 rounded-xl text-sm focus:outline-none focus:ring-2 focus:ring-indigo-500">
+                            <option value="Enviada">Postulación Enviada</option>
+                            <option value="Pruebas">En Pruebas Psicotécnicas</option>
+                            <option value="Entrevista">En Entrevista</option>
+                            <option value="Oferta">¡Oferta Recibida!</option>
+                        </select>
+                    </div>
+                </div>
+                <div class="pt-4 flex items-center justify-end gap-3">
+                    <button type="button" onclick="closeApplicationModal()" class="px-5 py-2.5 rounded-xl text-sm font-semibold text-slate-600 hover:bg-slate-100 transition">Cancelar</button>
+                    <button type="submit" class="px-6 py-2.5 rounded-xl text-sm font-semibold bg-indigo-600 text-white hover:bg-indigo-700 transition shadow-md">Guardar en Tracker</button>
+                </div>
+            </form>
+        </div>
+    </div>
+
+    <!-- Tip Details Modal -->
+    <div id="tip-modal" class="fixed inset-0 z-50 bg-slate-900/60 backdrop-blur-sm hidden items-center justify-center p-4">
+        <div class="bg-white rounded-3xl max-w-xl w-full p-8 shadow-2xl relative animate-in fade-in zoom-in duration-200 max-h-[90vh] overflow-y-auto">
+            <button onclick="closeTipModal()" class="absolute top-6 right-6 text-slate-400 hover:text-slate-700 text-xl font-bold">
+                <i class="fa-solid fa-xmark"></i>
+            </button>
+            <div id="tip-modal-content">
+                <!-- Dynamic Content -->
+            </div>
+        </div>
+    </div>
+
+    <!-- JavaScript Application Logic -->
+    <script>
+        // Dataset of live practice offers in Colombia
+        const jobsData = [
+            {
+                id: 1,
+                company: "Bancolombia",
+                role: "Practicante Ingeniería de Software & Datos",
+                city: "Medellín",
+                area: "Ingeniería & Tecnología",
+                type: "Práctica Universitaria",
+                date: "Hace 2 días",
+                link: "https://www.grupobancolombia.com/personas/conocenos/trabaja-con-nosotros",
+                badgeBg: "bg-blue-100 text-blue-800"
+            },
+            {
+                id: 2,
+                company: "Ecopetrol",
+                role: "Practicante Profesional Ingeniería de Petróleos / Química",
+                city: "Bogotá",
+                area: "Ingeniería & Tecnología",
+                type: "Práctica Semestral",
+                date: "Hace 3 días",
+                link: "https://www.ecopetrol.com.co",
+                badgeBg: "bg-emerald-100 text-emerald-800"
+            },
+            {
+                id: 3,
+                company: "Grupo Sura",
+                role: "Practicante en Analítica de Riesgos y Actuariado",
+                city: "Medellín",
+                area: "Ciencias Económicas",
+                type: "Práctica Profesional",
+                date: "Hace 5 días",
+                link: "https://www.gruposura.com",
+                badgeBg: "bg-purple-100 text-purple-800"
+            },
+            {
+                id: 4,
+                company: "Mercado Libre",
+                role: "IT Intern / Desarrollador Backend Junior",
+                city: "Remoto",
+                area: "Ingeniería & Tecnología",
+                type: "Pasantía Tecnológica",
+                date: "Hoy",
+                link: "https://jobs.mercadolibre.com/",
+                badgeBg: "bg-yellow-100 text-yellow-800"
+            },
+            {
+                id: 5,
+                company: "Grupo Nutresa",
+                role: "Practicante Gestión Humana y Selección",
+                city: "Medellín",
+                area: "Ciencias Económicas",
+                type: "Contrato de Aprendizaje SENA",
+                date: "Hace 1 semana",
+                link: "https://www.gruponutresa.com",
+                badgeBg: "bg-red-100 text-red-800"
+            },
+            {
+                id: 6,
+                company: "Globant",
+                role: "React / Node JS Bootcamp Trainee & Intern",
+                city: "Bogotá",
+                area: "Ingeniería & Tecnología",
+                type: "Bootcamp & Pasantía",
+                date: "Hace 4 días",
+                link: "https://careers.globant.com/",
+                badgeBg: "bg-indigo-100 text-indigo-800"
+            },
+            {
+                id: 7,
+                company: "Clinica Las Américas Auna",
+                role: "Practicante Administración en Salud",
+                city: "Medellín",
+                area: "Ciencias de la Salud",
+                type: "Práctica Universitaria",
+                date: "Hace 6 días",
+                link: "https://www.auna.sa",
+                badgeBg: "bg-teal-100 text-teal-800"
+            },
+            {
+                id: 8,
+                company: "Bavaria (AB InBev)",
+                role: "Supply Chain & Logistics Intern",
+                city: "Barranquilla",
+                area: "Ingeniería & Tecnología",
+                type: "Práctica Profesional",
+                date: "Hace 2 días",
+                link: "https://www.bavaria.co",
+                badgeBg: "bg-amber-100 text-amber-800"
+            },
+            {
+                id: 9,
+                company: "Celsia",
+                role: "Practicante Ingeniero Electricista / Energías",
+                city: "Cali",
+                area: "Ingeniería & Tecnología",
+                type: "Práctica Universitaria",
+                date: "Hace 3 días",
+                link: "https://www.celsia.com",
+                badgeBg: "bg-emerald-100 text-emerald-800"
+            }
+        ];
+
+        // Tracker State
+        let applications = JSON.parse(localStorage.getItem('practicas_co_tracker')) || [
+            { id: 101, company: "Bancolombia", role: "Practicante Ingeniería", city: "Medellín", status: "Pruebas", date: "2026-06-10" }
+        ];
+
+        // DOM Elements
+        const jobsGrid = document.getElementById('jobs-grid');
+        const noResults = document.getElementById('no-results');
+        const resultsCount = document.getElementById('results-count');
+        const filterKeyword = document.getElementById('filter-keyword');
+        const filterCity = document.getElementById('filter-city');
+        const filterArea = document.getElementById('filter-area');
+        const resetFiltersBtn = document.getElementById('reset-filters');
+        const mobileMenuBtn = document.getElementById('mobile-menu-btn');
+        const mobileMenu = document.getElementById('mobile-menu');
+
+        // Initialize App
+        document.addEventListener('DOMContentLoaded', () => {
+            renderJobs(jobsData);
+            renderTracker();
+            updateBadgeCount();
+
+            // Event Listeners for Filters
+            filterKeyword.addEventListener('input', applyFilters);
+            filterCity.addEventListener('change', applyFilters);
+            filterArea.addEventListener('change', applyFilters);
+            resetFiltersBtn.addEventListener('click', resetAllFilters);
+
+            // Mobile menu toggle
+            mobileMenuBtn.addEventListener('click', () => {
+                mobileMenu.classList.toggle('hidden');
+            });
+        });
+
+        // Render Jobs Grid
+        function renderJobs(data) {
+            jobsGrid.innerHTML = '';
+            resultsCount.textContent = data.length;
+
+            if (data.length === 0) {
+                noResults.classList.remove('hidden');
+                return;
+            } else {
+                noResults.classList.add('hidden');
+            }
+
+            data.forEach(job => {
+                const card = document.createElement('div');
+                card.className = "bg-white rounded-2xl p-6 border border-slate-200 hover:border-indigo-400 shadow-sm hover:shadow-xl transition-all flex flex-col justify-between group";
+                card.innerHTML = `
+                    <div>
+                        <div class="flex items-center justify-between mb-4">
+                            <span class="text-xs font-bold px-3 py-1 rounded-full ${job.badgeBg}">${job.type}</span>
+                            <span class="text-xs text-slate-400 font-medium">${job.date}</span>
+                        </div>
+                        <h3 class="text-lg font-bold text-slate-900 group-hover:text-indigo-600 transition-colors">${job.role}</h3>
+                        <p class="text-indigo-600 font-semibold text-sm mt-1">${job.company}</p>
+                        <div class="mt-4 flex flex-wrap gap-2 text-xs text-slate-600">
+                            <span class="bg-slate-100 px-2.5 py-1 rounded-md flex items-center gap-1"><i class="fa-solid fa-location-dot text-slate-400"></i> ${job.city}</span>
+                            <span class="bg-slate-100 px-2.5 py-1 rounded-md flex items-center gap-1"><i class="fa-solid fa-graduation-cap text-slate-400"></i> ${job.area}</span>
+                        </div>
+                    </div>
+                    <div class="mt-6 pt-4 border-t border-slate-100 flex items-center gap-2">
+                        <a href="${job.link}" target="_blank" rel="noopener noreferrer" class="flex-1 text-center bg-indigo-600 hover:bg-indigo-700 text-white py-2.5 rounded-xl font-semibold text-xs transition flex items-center justify-center gap-1.5">
+                            Postularse <i class="fa-solid fa-arrow-up-right-from-square text-[10px]"></i>
+                        </a>
+                        <button onclick="quickAddTracker('${job.company.replace(/'/g, "\\'")}', '${job.role.replace(/'/g, "\\'")}', '${job.city}')" title="Guardar en mi Tracker" class="w-10 h-10 bg-slate-100 hover:bg-indigo-50 text-slate-600 hover:text-indigo-600 rounded-xl flex items-center justify-center transition">
+                            <i class="fa-solid fa-bookmark"></i>
+                        </button>
+                    </div>
+                `;
+                jobsGrid.appendChild(card);
+            });
+        }
+
+        // Apply Filters logic
+        function applyFilters() {
+            const keyword = filterKeyword.value.toLowerCase().trim();
+            const city = filterCity.value;
+            const area = filterArea.value;
+
+            const filtered = jobsData.filter(job => {
+                const matchKeyword = job.company.toLowerCase().includes(keyword) || job.role.toLowerCase().includes(keyword);
+                const matchCity = city === "" || job.city === city;
+                const matchArea = area === "" || job.area === area;
+
+                return matchKeyword && matchCity && matchArea;
+            });
+
+            renderJobs(filtered);
+        }
+
+        function resetAllFilters() {
+            filterKeyword.value = '';
+            filterCity.value = '';
+            filterArea.value = '';
+            renderJobs(jobsData);
+            showToast("Filtros restablecidos correctamente", "info");
+        }
+
+        function filterByCityQuick(cityName) {
+            filterCity.value = cityName;
+            applyFilters();
+            showToast(`Filtrando ofertas en ${cityName}`, "info");
+        }
+
+        // Tabs for Directory
+        function switchTab(tabName) {
+            const btnEmpresas = document.getElementById('tab-btn-empresas');
+            const btnPortales = document.getElementById('tab-btn-portales');
+            const divEmpresas = document.getElementById('tab-empresas');
+            const divPortales = document.getElementById('tab-portales');
+
+            if (tabName === 'empresas') {
+                btnEmpresas.className = "px-6 py-2.5 rounded-xl text-sm font-bold transition-all bg-white text-indigo-600 shadow-sm";
+                btnPortales.className = "px-6 py-2.5 rounded-xl text-sm font-bold text-slate-600 hover:text-indigo-600 transition-all";
+                divEmpresas.classList.remove('hidden');
+                divPortales.classList.add('hidden');
+            } else {
+                btnPortales.className = "px-6 py-2.5 rounded-xl text-sm font-bold transition-all bg-white text-indigo-600 shadow-sm";
+                btnEmpresas.className = "px-6 py-2.5 rounded-xl text-sm font-bold text-slate-600 hover:text-indigo-600 transition-all";
+                divPortales.classList.remove('hidden');
+                divEmpresas.classList.add('hidden');
+            }
+        }
+
+        // Tracker Functions
+        function renderTracker() {
+            const tbody = document.getElementById('tracker-table-body');
+            const emptyState = document.getElementById('tracker-empty');
+            tbody.innerHTML = '';
+
+            if (applications.length === 0) {
+                emptyState.classList.remove('hidden');
+                return;
+            } else {
+                emptyState.classList.add('hidden');
+            }
+
+            applications.forEach(app => {
+                let statusBadge = '';
+                if(app.status === 'Enviada') statusBadge = 'bg-blue-500/20 text-blue-300 border border-blue-500/30';
+                else if(app.status === 'Pruebas') statusBadge = 'bg-amber-500/20 text-amber-300 border border-amber-500/30';
+                else if(app.status === 'Entrevista') statusBadge = 'bg-purple-500/20 text-purple-300 border border-purple-500/30';
+                else if(app.status === 'Oferta') statusBadge = 'bg-emerald-500/20 text-emerald-300 border border-emerald-500/30';
+
+                const tr = document.createElement('tr');
+                tr.className = "hover:bg-white/5 transition-colors";
+                tr.innerHTML = `
+                    <td class="p-4">
+                        <div class="font-bold text-white">${app.company}</div>
+                        <div class="text-xs text-slate-300 mt-0.5">${app.role}</div>
+                    </td>
+                    <td class="p-4 text-slate-300">${app.city}</td>
+                    <td class="p-4">
+                        <span class="text-xs font-semibold px-3 py-1 rounded-full ${statusBadge}">${app.status}</span>
+                    </td>
+                    <td class="p-4 text-slate-300 text-xs">${app.date}</td>
+                    <td class="p-4 text-right">
+                        <button onclick="deleteApplication(${app.id})" class="w-8 h-8 rounded-lg bg-red-500/10 hover:bg-red-500/20 text-red-400 flex items-center justify-center transition ml-auto" title="Eliminar del tracker">
+                            <i class="fa-solid fa-trash-can text-xs"></i>
+                        </button>
+                    </td>
+                `;
+                tbody.appendChild(tr);
+            });
+        }
+
+        function quickAddTracker(company, role, city) {
+            const newApp = {
+                id: Date.now(),
+                company: company,
+                role: role,
+                city: city,
+                status: "Enviada",
+                date: new Date().toISOString().split('T')[0]
+            };
+            applications.push(newApp);
+            saveAndRefreshTracker();
+            showToast(`¡Añadido "${company}" a tu Tracker!`, "success");
+        }
+
+        function openApplicationModal() {
+            document.getElementById('application-modal').classList.remove('hidden');
+            document.getElementById('application-modal').classList.add('flex');
+        }
+
+        function closeApplicationModal() {
+            document.getElementById('application-modal').classList.add('hidden');
+            document.getElementById('application-modal').classList.remove('flex');
+            document.getElementById('application-form').reset();
+        }
+
+        function handleApplicationSubmit(e) {
+            e.preventDefault();
+            const company = document.getElementById('modal-company').value;
+            const role = document.getElementById('modal-role').value;
+            const city = document.getElementById('modal-city').value;
+            const status = document.getElementById('modal-status').value;
+
+            const newApp = {
+                id: Date.now(),
+                company,
+                role,
+                city,
+                status,
+                date: new Date().toISOString().split('T')[0]
+            };
+
+            applications.push(newApp);
+            saveAndRefreshTracker();
+            closeApplicationModal();
+            showToast("Postulación registrada exitosamente en el tracker", "success");
+        }
+
+        function deleteApplication(id) {
+            applications = applications.filter(app => app.id !== id);
+            saveAndRefreshTracker();
+            showToast("Postulación eliminada del tracker", "info");
+        }
+
+        function saveAndRefreshTracker() {
+            localStorage.setItem('practicas_co_tracker', JSON.stringify(applications));
+            renderTracker();
+            updateBadgeCount();
+        }
+
+        function updateBadgeCount() {
+            document.getElementById('badge-count').textContent = applications.length;
+        }
+
+        // Tip Modals Content
+        const tipContents = {
+            hojaDeVida: `
+                <div class="space-y-4">
+                    <div class="w-12 h-12 bg-indigo-100 text-indigo-600 rounded-2xl flex items-center justify-center text-xl font-bold">
+                        <i class="fa-solid fa-file-lines"></i>
+                    </div>
+                    <h3 class="text-2xl font-bold text-slate-900">Guía: Hoja de Vida de Alto Impacto para Estudiantes</h3>
+                    <p class="text-slate-600 text-sm leading-relaxed">
+                        Los reclutadores en empresas colombianas revisan decenas de hojas de vida en segundos. Sigue estas recomendaciones clave:
+                    </p>
+                    <ul class="space-y-3 text-sm text-slate-700">
+                        <li class="flex items-start gap-2">
+                            <i class="fa-solid fa-check text-emerald-600 mt-1"></i>
+                            <div><strong>Extensión Ideal:</strong> Exactamente 1 página. No incluyas foto obligatoria si postulas a multinacionales tecnológicas, pero es común en el sector tradicional colombiano.</div>
+                        </li>
+                        <li class="flex items-start gap-2">
+                            <i class="fa-solid fa-check text-emerald-600 mt-1"></i>
+                            <div><strong>Proyectos Universitarios:</strong> Destaca el software que desarrollaste, simulaciones financieras, investigaciones o tesis. No pongas solo la materia aprobada, sino el logro obtenido.</div>
+                        </li>
+                        <li class="flex items-start gap-2">
+                            <i class="fa-solid fa-check text-emerald-600 mt-1"></i>
+                            <div><strong>Habilidades Técnicas:</strong> Menciona herramientas exactas (Python, Excel Avanzado, SAP, SQL, AutoCAD, Inglés B2, etc.).</div>
+                        </li>
+                    </ul>
+                    <div class="pt-4">
+                        <button onclick="closeTipModal()" class="w-full bg-indigo-600 text-white py-3 rounded-xl font-semibold text-sm hover:bg-indigo-700 transition">Entendido, ¡Gracias!</button>
+                    </div>
+                </div>
+            `,
+            psicotecnicas: `
+                <div class="space-y-4">
+                    <div class="w-12 h-12 bg-emerald-100 text-emerald-600 rounded-2xl flex items-center justify-center text-xl font-bold">
+                        <i class="fa-solid fa-brain"></i>
+                    </div>
+                    <h3 class="text-2xl font-bold text-slate-900">Guía: Supera las Pruebas Psicotécnicas</h3>
+                    <p class="text-slate-600 text-sm leading-relaxed">
+                        Pruebas como SHL, Pearson o test de personalidad son el filtro inicial en bancos y grandes corporaciones en Colombia.
+                    </p>
+                    <ul class="space-y-3 text-sm text-slate-700">
+                        <li class="flex items-start gap-2">
+                            <i class="fa-solid fa-check text-emerald-600 mt-1"></i>
+                            <div><strong>Razonamiento Numérico y Verbal:</strong> Haz simulacros en línea gratuitos para familiarizarte con gráficos de barras y deducción de textos bajo presión de tiempo.</div>
+                        </li>
+                        <li class="flex items-start gap-2">
+                            <i class="fa-solid fa-check text-emerald-600 mt-1"></i>
+                            <div><strong>Pruebas de Personalidad:</strong> Responde con honestidad pero alineado con valores corporativos como ética, orientación al logro, trabajo en equipo y adaptabilidad.</div>
+                        </li>
+                    </ul>
+                    <div class="pt-4">
+                        <button onclick="closeTipModal()" class="w-full bg-indigo-600 text-white py-3 rounded-xl font-semibold text-sm hover:bg-indigo-700 transition">Entendido, ¡Gracias!</button>
+                    </div>
+                </div>
+            `,
+            entrevistas: `
+                <div class="space-y-4">
+                    <div class="w-12 h-12 bg-amber-100 text-amber-600 rounded-2xl flex items-center justify-center text-xl font-bold">
+                        <i class="fa-solid fa-comments"></i>
+                    </div>
+                    <h3 class="text-2xl font-bold text-slate-900">Guía: El Método STAR para Entrevistas</h3>
+                    <p class="text-slate-600 text-sm leading-relaxed">
+                        Cuando te pregunten *"Cuéntame de una vez que resolviste un problema difícil..."*, estructura tu respuesta en 4 pasos:
+                    </p>
+                    <ul class="space-y-3 text-sm text-slate-700">
+                        <li class="flex items-start gap-2">
+                            <span class="w-6 h-6 rounded-full bg-indigo-100 text-indigo-700 flex items-center justify-center font-bold text-xs shrink-0 mt-0.5">S</span>
+                            <div><strong>Situación:</strong> Contextualiza brevemente el problema (ej. En un proyecto universitario de último semestre...).</div>
+                        </li>
+                        <li class="flex items-start gap-2">
+                            <span class="w-6 h-6 rounded-full bg-indigo-100 text-indigo-700 flex items-center justify-center font-bold text-xs shrink-0 mt-0.5">T</span>
+                            <div><strong>Tarea:</strong> ¿Cuál era tu responsabilidad específica en ese reto?</div>
+                        </li>
+                        <li class="flex items-start gap-2">
+                            <span class="w-6 h-6 rounded-full bg-indigo-100 text-indigo-700 flex items-center justify-center font-bold text-xs shrink-0 mt-0.5">A</span>
+                            <div><strong>Acción:</strong> ¿Qué pasos concretos diste tú para solucionarlo?</div>
+                        </li>
+                        <li class="flex items-start gap-2">
+                            <span class="w-6 h-6 rounded-full bg-indigo-100 text-indigo-700 flex items-center justify-center font-bold text-xs shrink-0 mt-0.5">R</span>
+                            <div><strong>Resultado:</strong> ¿Qué aprendiste y qué calificación o impacto obtuviste?</div>
+                        </li>
+                    </ul>
+                    <div class="pt-4">
+                        <button onclick="closeTipModal()" class="w-full bg-indigo-600 text-white py-3 rounded-xl font-semibold text-sm hover:bg-indigo-700 transition">Entendido, ¡Gracias!</button>
+                    </div>
+                </div>
+            `
+        };
+
+        function openTipModal(tipKey) {
+            const modal = document.getElementById('tip-modal');
+            const content = document.getElementById('tip-modal-content');
+            content.innerHTML = tipContents[tipKey] || '';
+            modal.classList.remove('hidden');
+            modal.classList.add('flex');
+        }
+
+        function closeTipModal() {
+            document.getElementById('tip-modal').classList.add('hidden');
+            document.getElementById('tip-modal').classList.remove('flex');
+        }
+
+        // Custom Toast Notification System
+        function showToast(message, type = 'success') {
+            const container = document.getElementById('toast-container');
+            const toast = document.createElement('div');
+            
+            let bgClass = "bg-slate-900 text-white border-slate-800";
+            let icon = "fa-circle-check text-emerald-400";
+            if(type === 'info') {
+                bgClass = "bg-slate-900 text-white border-slate-800";
+                icon = "fa-circle-info text-blue-400";
+            }
+
+            toast.className = `pointer-events-auto flex items-center gap-3 px-5 py-3.5 rounded-2xl shadow-2xl border ${bgClass} text-sm font-medium transform translate-y-2 opacity-0 transition-all duration-300`;
+            toast.innerHTML = `<i class="fa-solid ${icon} text-lg"></i><span>${message}</span>`;
+            
+            container.appendChild(toast);
+
+            setTimeout(() => {
+                toast.classList.remove('translate-y-2', 'opacity-0');
+            }, 10);
+
+            setTimeout(() => {
+                toast.classList.add('translate-y-2', 'opacity-0');
+                setTimeout(() => toast.remove(), 300);
+            }, 3500);
+        }
+    </script>
+</body>
+</html>
